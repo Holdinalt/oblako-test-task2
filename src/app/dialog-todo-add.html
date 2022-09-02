@@ -1,0 +1,21 @@
+<h1 mat-dialog-title>Новая задача</h1>
+
+
+    <mat-form-field appearance="fill">
+      <mat-label>Название задачи</mat-label>
+      <input matInput required [(ngModel)]="out.todoText" name="input" #input="ngModel">
+    </mat-form-field>
+
+    <mat-form-field appearance="fill" >
+      <mat-label>Категория</mat-label>
+      <mat-select [(ngModel)]="out.category" name="select" #select="ngModel" required>
+        <mat-option *ngFor="let cat of categories.categories" [value]="cat">
+          {{cat.title}}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+<div mat-dialog-actions>
+  <button mat-button (click)="onNoClick()">No Thanks</button>
+  <button mat-button [mat-dialog-close]="out" [disabled]="!(select.dirty && input.valid)">Ok</button>
+
+</div>

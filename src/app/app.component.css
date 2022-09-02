@@ -1,0 +1,42 @@
+.cards{
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-column-gap: 45px;
+  margin: 50px;
+}
+
+.todo{
+  display: flex;
+  flex-direction: row;
+}
+
+.striked{
+  text-decoration: line-through
+}
+
+.mat-card{
+ border-radius: 0;
+}
+
+.mat-card-header{
+  display: flex;
+  justify-content: flex-start;
+}
+
+.mat-toolbar{
+  display: flex;
+  justify-content: space-between;
+}
+
+.todo{
+ margin-top: 20px;
+}
+
+.todo:first-child{
+  margin-top: 0;
+}
+
+.mat-card-content{
+  margin-top: 10px;
+}
+
