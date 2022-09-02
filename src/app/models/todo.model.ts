@@ -4,10 +4,10 @@ export class TodoModel{
   // is_completed: boolean;
   // category: CategoryModel;
 
-  constructor(public id: number, public text: string, public is_completed = false) {
+  constructor(public id: number, public text: string, public isCompleted = false) {
   }
 
   toggle(): void{
-    this.is_completed = !this.is_completed
+    this.isCompleted = !this.isCompleted
   }
 }

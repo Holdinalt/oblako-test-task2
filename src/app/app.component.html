@@ -13,13 +13,13 @@
       </mat-card-header>
 
       <mat-card-content>
-        <div class="todo" *ngFor="let todo of cat.todos">
+        <div class="todo" *ngFor="let todo of cat.todos; let i = index">
           <mat-checkbox color="primary"
-                        [checked]="todo.is_completed"
-                        (change)="todo.toggle()"
+                        [checked]="todo.isCompleted"
+                        (change)="toggleTodo(cat, i)"
           ></mat-checkbox>
           <div class="text">
-            <span [ngClass]="{striked: todo.is_completed}"
+            <span [ngClass]="{striked: todo.isCompleted}"
             >{{todo.text}}</span>
           </div>
         </div>

@@ -13,6 +13,9 @@ import {MatInputModule} from "@angular/material/input";
 import {MatSelectModule} from "@angular/material/select";
 import {MatDialogModule} from "@angular/material/dialog";
 import {MatButtonModule} from "@angular/material/button";
+import {ServerService} from "./server.service";
+import { HttpClientModule} from "@angular/common/http";
+import {HttpHandlerService} from "./httpHandler.service";
 
 
 @NgModule({
@@ -32,9 +35,14 @@ import {MatButtonModule} from "@angular/material/button";
     ReactiveFormsModule,
     MatIconModule,
     MatDialogModule,
-    MatButtonModule
+    MatButtonModule,
+    HttpClientModule,
+    ReactiveFormsModule
   ],
-  providers: [],
+  providers: [
+    ServerService,
+    HttpHandlerService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule{}
