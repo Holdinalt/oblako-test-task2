@@ -41,9 +41,11 @@ export class AppComponent implements OnInit {
 
       for(let i = 0; i < cats.length; i++){
         cats[i].todos = plainToClass(TodoModel, cats[i].todos)
+        cats[i].todos = cats[i].todos.sort((n1, n2) => n1.id - n2.id)
       }
       console.log(cats)
       this.categories = cats
+
     })
 
   }
