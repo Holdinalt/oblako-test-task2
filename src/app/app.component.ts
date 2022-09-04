@@ -4,6 +4,7 @@ import {TodoModel} from "./models/todo.model";
 import {MAT_DIALOG_DATA, MatDialog, MatDialogRef} from "@angular/material/dialog";
 import {ServerService} from "./server.service";
 import {plainToClass} from "class-transformer";
+import {FormControl, FormGroup, Validators} from "@angular/forms";
 
 export interface DialogTodoDataOut{
   category: CategoryModel
@@ -94,13 +95,36 @@ export class DialogTodoAdd implements OnInit{
     @Inject(MAT_DIALOG_DATA) public categories: {categories: CategoryModel[]},
   ) {}
 
+  form: FormGroup | undefined
+
+
+
   out: DialogTodoDataOut = {
-    category: new CategoryModel(1, "null", []),
+    category: new CategoryModel(-1, "null", []),
     todoText: ''
   }
 
   ngOnInit(): void {
     console.log(this.categories.categories)
+
+    this.form = new FormGroup({
+      "input": new FormControl(null, [
+        Validators.required,
+        // this.inputValidator
+      ]),
+
+      "select": new FormControl(null, [
+        Validators.required,
+        this.selectValidator
+      ])
+    });
+  }
+
+  selectValidator(control: FormControl): {[s:string]:boolean}|null{
+    if (control.value === null || control.value.id === -1){
+      return {"select": true}
+    }
+    return null;
   }
 
   onNoClick(): void {

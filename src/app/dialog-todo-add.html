@@ -1,21 +1,29 @@
-<h1 mat-dialog-title>Новая задача</h1>
+<form *ngIf="form" [formGroup]="form">
+  <h1 mat-dialog-title>Новая задача</h1>
 
 
-    <mat-form-field appearance="fill">
-      <mat-label>Название задачи</mat-label>
-      <input matInput required [(ngModel)]="out.todoText" name="input" #input="ngModel">
-    </mat-form-field>
+  <mat-form-field appearance="fill">
+    <mat-label>Название задачи</mat-label>
+    <input matInput required [(ngModel)]="out.todoText" name="input" formControlName="input">
+    <ng-container *ngIf="form.controls['input'].invalid && form.controls['input'].touched">
+      <span style="color: red">Необходимо заполнить</span>
+    </ng-container>
+  </mat-form-field>
 
-    <mat-form-field appearance="fill" >
-      <mat-label>Категория</mat-label>
-      <mat-select [(ngModel)]="out.category" name="select" #select="ngModel" required>
-        <mat-option *ngFor="let cat of categories.categories" [value]="cat">
-          {{cat.title}}
-        </mat-option>
-      </mat-select>
-    </mat-form-field>
-<div mat-dialog-actions>
-  <button mat-button (click)="onNoClick()">No Thanks</button>
-  <button mat-button [mat-dialog-close]="out" [disabled]="!(select.dirty && input.valid)">Ok</button>
+  <mat-form-field appearance="fill" >
+    <mat-label>Категория</mat-label>
+    <mat-select [(ngModel)]="out.category" formControlName="select">
+      <mat-option *ngFor="let cat of categories.categories" [value]="cat">
+        {{cat.title}}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+  <ng-container *ngIf="form.controls['select'].invalid && form.controls['select'].touched">
+    <span style="color: red">Заполните название</span>
+  </ng-container>
+  <div mat-dialog-actions>
+    <button mat-button (click)="onNoClick()">No Thanks</button>
+    <button mat-button [mat-dialog-close]="out" [disabled]="!(form.controls['input'].valid == true && form.controls['select'].valid == true)">Ok</button>
 
-</div>
+  </div>
+</form>
