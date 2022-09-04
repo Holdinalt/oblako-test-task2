@@ -77,7 +77,8 @@ export class AppComponent implements OnInit {
       let data: DialogTodoDataOut = result
       // data.category.addTodo(new TodoModel(0, data.todoText))
       this.serverService.addTodo(data.category.title, data.todoText).subscribe((res) => {
-        console.log(res)
+        // console.log(plainToClass(TodoModel,  res.data.createTodo))
+        data.category.todos.push(plainToClass(TodoModel,  res.data.createTodo))
       })
     });
   }

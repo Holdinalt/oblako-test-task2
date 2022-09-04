@@ -2,6 +2,7 @@ import {Injectable} from "@angular/core";
 import {CategoryModel} from "./models/category.model";
 import {HttpHandlerService} from "./httpHandler.service";
 import {Observable} from "rxjs";
+import {TodoModel} from "./models/todo.model";
 
 @Injectable()
 export class ServerService {
@@ -24,23 +25,19 @@ export class ServerService {
     return this.httpHandler.get(body)
   }
 
-  addTodo(category_title: string, text: string): Observable<{data: {categories: CategoryModel}}>{
+  addTodo(category_title: string, text: string): Observable<{data: {createTodo: TodoModel}}>{
     const body = `mutation ($cat: String!, $text: String!){
     createTodo(input: {
      categoryName: $cat,
      text: $text
     }) {
-     category {
-        id
-        title
-     }
      id
      text
      isCompleted
     }
     }`
 
-    console.log(category_title)
+    // console.log(category_title)
     return this.httpHandler.post(body, {"cat": category_title, "text": text})
 
   }

@@ -18,7 +18,7 @@ export class HttpHandlerService{
   }
 
   post(query: string, vars: object): Observable<any>{
-    console.log(vars)
+    // console.log(vars)
     return this.http.post(
       'https://oblako-test-ask.herokuapp.com/graphql',
       JSON.stringify({"query": query, "variables": vars}),
